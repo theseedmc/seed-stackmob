@@ -5,12 +5,20 @@
     <parent>
         <artifactId>StackMob-2</artifactId>
         <groupId>uk.antiperson.stackmob</groupId>
-        <version>3.3.6</version>
+        <version>4.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>API</artifactId>
     <version>API</version>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>spigotmc.org</groupId>
+            <artifactId>spigot-1.13.2</artifactId>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/jars/1.13.2.jar</systemPath>
+            <version>1.13.2</version>
+        </dependency>
+    </dependencies>
 </project>

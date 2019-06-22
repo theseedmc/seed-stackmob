@@ -9,6 +9,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 import uk.antiperson.stackmob.StackMob;
+import uk.antiperson.stackmob.api.SeedNerfAI;
 import uk.antiperson.stackmob.api.StackedEntity;
 import uk.antiperson.stackmob.api.events.StackDeathEvent;
 import uk.antiperson.stackmob.api.entity.death.DeathStep;
@@ -38,6 +39,16 @@ public class DeathEvent implements Listener {
             return;
         }
         int stackAmount = StackTools.getSize(dead);
+
+        // Remove unnecessary dead entity record from HashMap
+        new java.util.Timer().schedule(
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    SeedNerfAI.nerfedEntities.remove(dead.getUniqueId());
+                }},
+            2000
+        );
         
         DeathStep method = sm.getDeathManager().calculateMethod(dead);
         int subtractAmount = sm.getDeathManager().calculateStep(dead, method);

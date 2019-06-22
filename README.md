@@ -1,10 +1,11 @@
-# StackMob 3, with 1.13 support
+# ✨ Seed Stackmob ![Release 1.13.2](https://img.shields.io/badge/Release-1.13.2-brightgreen.svg) ![Passing](https://img.shields.io/badge/Build-passing-brightgreen.svg)
+A fork of https://github.com/Nathat23/StackMob-3, with additions to support nerfing AI and enhance detection radius.
 
-StackMob 3 is the next big update with lots of code refactoring and additions.
+# Build
+You can build using Maven. This will output a shaded JAR in the Plugins/target directory.
+```
+mvn clean package
+```
 
-Welcome! StackMob is a bukkit plugin that is used by many servers - big and small - to enhance the experience of their players by
-'stacking' mobs. This is especially useful for monster grinders as there are usually many of the same type in one place.
-
-Find out more on the SpigotMC page - https://www.spigotmc.org/resources/stackmob.29999/
-
-Report issues on the issues tracker.
+# License
+This project, and the parent project, [StackMob](https://github.com/theseedmc/seed-stackmob), are licensed under the GPL-3.0 license.

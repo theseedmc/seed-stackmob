@@ -2,3 +2,13 @@
 .idea/
 target/
 dependency-reduced-pom.xml
+API/jars/
+Plugin/jars/1.13.2.jar
+.vscode
+API/target/
+Plugin/target/
+v1_13/target/
+v1_14/target/
+.circleci
+.github
+.settings

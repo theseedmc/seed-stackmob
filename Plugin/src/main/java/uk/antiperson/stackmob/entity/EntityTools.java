@@ -6,6 +6,7 @@ import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 
 import uk.antiperson.stackmob.api.IStackMob;
+import uk.antiperson.stackmob.api.SeedNerfAI;
 import uk.antiperson.stackmob.api.compat.PluginCompat;
 import uk.antiperson.stackmob.api.entity.IEntityTools;
 import uk.antiperson.stackmob.compat.hooks.MythicMobsHook;
@@ -76,7 +77,24 @@ public class EntityTools implements IEntityTools {
                 return entity;
             }
         }
-        return original.getWorld().spawnEntity(location, original.getType());
+        
+        // Spawn clone of entity and cache parent in HashMap
+        Entity clone = original.getWorld().spawnEntity(location, original.getType());
+        if (SeedNerfAI.nerfedEntities.containsKey(original.getUniqueId()) || original.fromMobSpawner()) {
+            new SeedNerfAI(clone);
+            SeedNerfAI.nerfedEntities.put(clone.getUniqueId(), true);
+
+            // Remove dead entity from HashMap
+            new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        SeedNerfAI.nerfedEntities.remove(original.getUniqueId());
+                    }},
+                2000
+            );
+        }
+        return clone;
     }
 
     @Override
