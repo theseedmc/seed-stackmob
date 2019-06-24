@@ -78,22 +78,9 @@ public class EntityTools implements IEntityTools {
             }
         }
         
-        // Spawn clone of entity and cache parent in HashMap
+        // Spawn clone of entity and nerf it
         Entity clone = original.getWorld().spawnEntity(location, original.getType());
-        if (SeedNerfAI.nerfedEntities.containsKey(original.getUniqueId()) || original.fromMobSpawner()) {
-            new SeedNerfAI(clone);
-            SeedNerfAI.nerfedEntities.put(clone.getUniqueId(), true);
-
-            // Remove dead entity from HashMap
-            new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        SeedNerfAI.nerfedEntities.remove(original.getUniqueId());
-                    }},
-                2000
-            );
-        }
+        new SeedNerfAI(clone);
         return clone;
     }
 

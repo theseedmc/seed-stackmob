@@ -16,10 +16,7 @@ public class EntityManager {
      * @return An instance of the StackedEntity class, to do above.
      */
     public StackedEntity getStackedEntity(Entity entity){
-        if (entity.fromMobSpawner() || SeedNerfAI.nerfedEntities.containsKey(entity.getUniqueId())) {
-            new SeedNerfAI(entity);
-            SeedNerfAI.nerfedEntities.put(entity.getUniqueId(), true);
-        }
+        new SeedNerfAI(entity);
         return new StackedEntity(entity, sm);
     }
 

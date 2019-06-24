@@ -1,8 +1,6 @@
 package uk.antiperson.stackmob.api;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.UUID;
 
 import com.google.common.collect.Sets;
 import org.bukkit.craftbukkit.v1_13_R2.entity.CraftEntity;
@@ -12,8 +10,6 @@ import net.minecraft.server.v1_13_R2.EntityInsentient;
 import net.minecraft.server.v1_13_R2.PathfinderGoalSelector;
 
 public class SeedNerfAI {
-    public static HashMap<UUID, Boolean> nerfedEntities = new HashMap<>(); // Temporarily cache parent entities
-
     public SeedNerfAI(Entity e) { // Remove all pathfinding goals
         EntityCreature c = (EntityCreature) ((EntityInsentient) ((CraftEntity)e).getHandle());
         try {

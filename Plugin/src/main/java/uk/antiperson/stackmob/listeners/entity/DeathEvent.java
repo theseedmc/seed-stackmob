@@ -17,6 +17,7 @@ import uk.antiperson.stackmob.api.entity.StackTools;
 import uk.antiperson.stackmob.entity.death.method.KillStepDamage;
 
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
 
 public class DeathEvent implements Listener {
 
@@ -39,17 +40,6 @@ public class DeathEvent implements Listener {
             return;
         }
         int stackAmount = StackTools.getSize(dead);
-
-        // Remove unnecessary dead entity record from HashMap
-        new java.util.Timer().schedule(
-            new java.util.TimerTask() {
-                @Override
-                public void run() {
-                    SeedNerfAI.nerfedEntities.remove(dead.getUniqueId());
-                }},
-            2000
-        );
-        
         DeathStep method = sm.getDeathManager().calculateMethod(dead);
         int subtractAmount = sm.getDeathManager().calculateStep(dead, method);
         callEvent(dead, e, subtractAmount);
